@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>彈出視窗範例</title>
+    <style>
+        /* 彈出視窗的樣式 */
+        .popup {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        /* 背景遮罩 */
+        .overlay {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 觸發按鈕 -->
+<a href="#" id="openPopup">打開小視窗</a>
+
+<!-- 背景遮罩 -->
+<div class="overlay" id="overlay"></div>
+
+<!-- 彈出視窗 -->
+<div class="popup" id="popupWindow">
+    <h2>這裡是另一個HTML視窗</h2>
+    <p>這裡的內容可以自由修改。</p>
+    <button id="closePopup">關閉視窗</button>
+</div>
+
+<script>
+    const openBtn = document.getElementById('openPopup');
+    const closeBtn = document.getElementById('closePopup');
+    const popup = document.getElementById('popupWindow');
+    const overlay = document.getElementById('overlay');
+
+    // 打開視窗
+    openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+    });
+
+    // 關閉視窗
+    closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+
+    // 點背景也可以關閉
+    overlay.addEventListener('click', function() {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
